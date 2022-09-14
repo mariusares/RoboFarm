@@ -6,7 +6,7 @@ The Software would be updated in the next few days
 
 
 
-Long story short, few years ago (in 2017 i think) one guy criticised the graphical interface.
+Long story short, few years ago (in 2017 i think), a guy criticised the graphical interface.
 
 On that moment I realised that he has to be a part of the team. 
 
