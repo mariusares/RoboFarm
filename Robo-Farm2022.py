@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import threading
-import SocketServer
+import socketserver
 import sys
 import os
 import signal
@@ -13,8 +13,6 @@ GPIO.setmode(GPIO.BCM)
 from datetime import date
 
 
-#database settings
-connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
 
 #Irrigation zone 1
 flagZ1 = 0
@@ -364,6 +362,7 @@ def updateTime():
 
 def updateSet():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select zones from settings WHERE 1")
         data = cursor.fetchall()
@@ -372,7 +371,7 @@ def updateSet():
             auxSet = int(row[0])
         cursor.close()
         connection.close()
-        print auxSet
+        print(auxSet)
     except MySQLdb.OperationalError:
         print ("eroare Update Setari")
         subprocess.Popen(["echo 'eroare update setari 1-6' >> /var/tmp/robofarm"], shell=True)
@@ -381,6 +380,7 @@ def updateSet():
         pass
 def updateirigareZ1():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 1")
         data = cursor.fetchall()
@@ -427,7 +427,7 @@ def updateirigareZ1():
             minuth1t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z1, orai1, minuti1, orai1oprit, minuti1oprit, activh1Z1, orah1, minuth1, orah1oprit, minuth1oprit, activi2Z1, orai1t2, minuti1t2, orai1t2oprit, minuti1t2oprit, activh2Z1, orah1t2, minuth1t2, orah1t2oprit, minuth1t2oprit
+        print(activi1Z1, orai1, minuti1, orai1oprit, minuti1oprit, activh1Z1, orah1, minuth1, orah1oprit, minuth1oprit, activi2Z1, orai1t2, minuti1t2, orai1t2oprit, minuti1t2oprit, activh2Z1, orah1t2, minuth1t2, orah1t2oprit, minuth1t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona1")
         subprocess.Popen(["echo 'eroare Zona1' >> /var/tmp/robofarm"], shell=True)
@@ -435,6 +435,7 @@ def updateirigareZ1():
 
 def updateirigareZ2():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 2")
         data = cursor.fetchall()
@@ -481,7 +482,7 @@ def updateirigareZ2():
             minuth2t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z2, orai2, minuti2, orai2oprit, minuti2oprit, activh1Z2, orah2, minuth2, orah2oprit, minuth2oprit, activi2Z2, orai2t2, minuti2t2, orai2t2oprit, minuti2t2oprit, activh2Z2, orah2t2, minuth2t2, orah2t2oprit, minuth2t2oprit
+        print(activi1Z2, orai2, minuti2, orai2oprit, minuti2oprit, activh1Z2, orah2, minuth2, orah2oprit, minuth2oprit, activi2Z2, orai2t2, minuti2t2, orai2t2oprit, minuti2t2oprit, activh2Z2, orah2t2, minuth2t2, orah2t2oprit, minuth2t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona2")
         subprocess.Popen(["echo 'eroare Zona2' >> /var/tmp/robofarm"], shell=True)
@@ -489,6 +490,7 @@ def updateirigareZ2():
 
 def updateirigareZ3():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 3")
         data = cursor.fetchall()
@@ -535,7 +537,7 @@ def updateirigareZ3():
             minuth3t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z3, orai3, minuti3, orai3oprit, minuti3oprit, activh1Z3, orah3, minuth3, orah3oprit, minuth3oprit, activi2Z3, orai3t2, minuti3t2, orai3t2oprit, minuti3t2oprit, activh2Z3, orah3t2, minuth3t2, orah3t2oprit, minuth3t2oprit
+        print(activi1Z3, orai3, minuti3, orai3oprit, minuti3oprit, activh1Z3, orah3, minuth3, orah3oprit, minuth3oprit, activi2Z3, orai3t2, minuti3t2, orai3t2oprit, minuti3t2oprit, activh2Z3, orah3t2, minuth3t2, orah3t2oprit, minuth3t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona3")
         subprocess.Popen(["echo 'eroare Zona3' >> /var/tmp/robofarm"], shell=True)
@@ -543,6 +545,7 @@ def updateirigareZ3():
 
 def updateirigareZ4():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 4")
         data = cursor.fetchall()
@@ -589,13 +592,14 @@ def updateirigareZ4():
             minuth4t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z4, orai4, minuti4, orai4oprit, minuti4oprit, activh1Z4, orah4, minuth4, orah4oprit, minuth4oprit, activi2Z4, orai4t2, minuti4t2, orai4t2oprit, minuti4t2oprit, activh2Z4, orah4t2, minuth4t2, orah4t2oprit, minuth4t2oprit
+        print(activi1Z4, orai4, minuti4, orai4oprit, minuti4oprit, activh1Z4, orah4, minuth4, orah4oprit, minuth4oprit, activi2Z4, orai4t2, minuti4t2, orai4t2oprit, minuti4t2oprit, activh2Z4, orah4t2, minuth4t2, orah4t2oprit, minuth4t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona4")
         subprocess.Popen(["echo 'eroare Zona4' >> /var/tmp/robofarm"], shell=True)
         pass
 def updateirigareZ5():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 5")
         data = cursor.fetchall()
@@ -642,13 +646,14 @@ def updateirigareZ5():
             minuth5t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z5, orai5, minuti5, orai5oprit, minuti5oprit, activh1Z5, orah5, minuth5, orah5oprit, minuth5oprit, activi2Z5, orai5t2, minuti5t2, orai5t2oprit, minuti5t2oprit, activh2Z5, orah5t2, minuth5t2, orah5t2oprit, minuth5t2oprit
+        print(activi1Z5, orai5, minuti5, orai5oprit, minuti5oprit, activh1Z5, orah5, minuth5, orah5oprit, minuth5oprit, activi2Z5, orai5t2, minuti5t2, orai5t2oprit, minuti5t2oprit, activh2Z5, orah5t2, minuth5t2, orah5t2oprit, minuth5t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona5")
         subprocess.Popen(["echo 'eroare Zona5' >> /var/tmp/robofarm"], shell=True)
         pass
 def updateirigareZ6():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor()
         cursor.execute("select activi1, OraPornireIrigare, MinutPornireIrigare, OraOprireIrigare, MinutOprireIrigare, activh1, OraPornireHrana, MinutPornireHrana, OraOprireHrana, MinutOprireHrana, activi2, OraPornireIrigare2, MinutPornireIrigare2, OraOprireIrigare2, MinutOprireIrigare2, activh2, OraPornireHrana2, MinutPornireHrana2, OraOprireHrana2, MinutOprireHrana2 from irigare WHERE id = 6")
         data = cursor.fetchall()
@@ -695,7 +700,7 @@ def updateirigareZ6():
             minuth6t2oprit = int(row[19])
         cursor.close()
         connection.close()
-        print activi1Z6, orai6, minuti6, orai6oprit, minuti6oprit, activh1Z6, orah6, minuth6, orah6oprit, minuth6oprit, activi2Z6, orai6t2, minuti6t2, orai6t2oprit, minuti6t2oprit, activh2Z6, orah6t2, minuth6t2, orah6t2oprit, minuth6t2oprit
+        print(activi1Z6, orai6, minuti6, orai6oprit, minuti6oprit, activh1Z6, orah6, minuth6, orah6oprit, minuth6oprit, activi2Z6, orai6t2, minuti6t2, orai6t2oprit, minuti6t2oprit, activh2Z6, orah6t2, minuth6t2, orah6t2oprit, minuth6t2oprit)
     except MySQLdb.OperationalError:
         print ("eroare Zona6")
         subprocess.Popen(["echo 'eroare Zona6' >> /var/tmp/robofarm"], shell=True)
@@ -704,6 +709,7 @@ def updateirigareZ6():
 ###MOTOARE
 def updatedata1():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor ()
         cursor.execute ("select position, enable, Topen, Tclose, Wwind, Wclose, timecycle, steps, break from comfort WHERE id = 1")
         data = cursor.fetchall()
@@ -727,8 +733,8 @@ def updatedata1():
             steps1 = int(row[7])
             break1 = int(row[8])
         cursor.close()
-        print "data updated"
-        print pozitionare1, activ1, Topen1, Tclose1, Wwind1, Wclose1, timecycle1, steps1, break1
+        print("data updated")
+        print(pozitionare1, activ1, Topen1, Tclose1, Wwind1, Wclose1, timecycle1, steps1, break1)
         connection.close ()
     except MySQLdb.OperationalError:
         print ("eroare Motor 1")
@@ -740,6 +746,7 @@ def updatedata1():
 
 def updatedata2():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor ()
         cursor.execute ("select position, enable, Topen, Tclose, Wwind, Wclose, timecycle, steps, break from comfort WHERE id = 2")
         data = cursor.fetchall()
@@ -763,8 +770,8 @@ def updatedata2():
             steps2 = int(row[7])
             break2 = int(row[8])
         cursor.close()
-        print "data 2 updated"
-        print pozitionare2, activ2, Topen2, Tclose2, Wwind2, Wclose2, timecycle2, steps2, break2
+        print("data 2 updated")
+        print(pozitionare2, activ2, Topen2, Tclose2, Wwind2, Wclose2, timecycle2, steps2, break2)
         connection.close ()
     except MySQLdb.OperationalError:
         print ("eroare Motor 2")
@@ -776,6 +783,7 @@ def updatedata2():
 ####data motor 3-4
 def updatedata3():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor ()
         cursor.execute ("select position, enable, Topen, Tclose, Wwind, Wclose, timecycle, steps, break from comfort WHERE id = 3")
         data = cursor.fetchall()
@@ -799,8 +807,8 @@ def updatedata3():
             steps3 = int(row[7])
             break3 = int(row[8])
         cursor.close()
-        print "data 3 updated"
-        print pozitionare3, activ3, Topen3, Tclose3, Wwind3, Wclose3, timecycle3, steps3, break3
+        print("data 3 updated")
+        print(pozitionare3, activ3, Topen3, Tclose3, Wwind3, Wclose3, timecycle3, steps3, break3)
         connection.close ()
     except MySQLdb.OperationalError:
         #time.sleep(1)
@@ -813,6 +821,7 @@ def updatedata3():
 
 def updatedata4():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor ()
         cursor.execute ("select position, enable, Topen, Tclose, Wwind, Wclose, timecycle, steps, break from comfort WHERE id = 4")
         data = cursor.fetchall()
@@ -836,8 +845,8 @@ def updatedata4():
             steps4 = int(row[7])
             break4 = int(row[8])
         cursor.close()
-        print "data 4 updated"
-        print pozitionare4, activ4, Topen4, Tclose4, Wwind4, Wclose4, timecycle4, steps4, break4
+        print("data 4 updated")
+        print(pozitionare4, activ4, Topen4, Tclose4, Wwind4, Wclose4, timecycle4, steps4, break4)
         connection.close ()
     except MySQLdb.OperationalError:
         #time.sleep(1)
@@ -850,6 +859,7 @@ def updatedata4():
 
 def updateAuxiliary():
     try:
+        connection = MySQLdb.connect (host = "localhost", user = "ceres", passwd = "roboceres#", db = "roboceres")
         cursor = connection.cursor ()
         cursor.execute ("select enablevent, startVent, stopVent, enableheat, startHeat, stopHeat, enabledaynight, dayTemp, nightTemp, dayLux, nightLux, enablelight, startLightTime, stopLightTime, enableHumi, startHumi, stopHumi from auxiliary WHERE 1")
         data = cursor.fetchall()
@@ -889,8 +899,8 @@ def updateAuxiliary():
             startHumi = int(row[15])
             stopHumi = int(row[16])
         cursor.close()
-        print "Auxiliary updated"
-        print enablevent, startVent, stopVent, enableheat, startHeat, stopHeat, enabledaynight, dayTemp, nightTemp, dayLux, nightLux, enablelight, startLight, stopLight, enablehumi, startHumi, stopHumi
+        print("Auxiliary updated")
+        print(enablevent, startVent, stopVent, enableheat, startHeat, stopHeat, enabledaynight, dayTemp, nightTemp, dayLux, nightLux, enablelight, startLight, stopLight, enablehumi, startHumi, stopHumi)
         connection.close ()
     except MySQLdb.OperationalError:
         time.sleep(1)
@@ -913,40 +923,40 @@ def irigareZ1():
        GPIO.output(pinZ1, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW) #pornire pompa
        flagZ1o = 5
-       print("Pornire Z1:", today)
+       print(("Pornire Z1:", today))
     if activi1Z1 == 1 and ora == orai1oprit and minut == minuti1oprit and GPIO.input(pinZ1) == 0:
        GPIO.output(pinZ1, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH) #oprire pompa
-       print "oprire activ"
+       print("oprire activ")
        flagZ1o = 0
     if activi2Z1 == 1 and ora == orai1t2 and minut == minuti1t2 and GPIO.input(pinZ1) == 1:
        GPIO.output(pinZ1, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW) #pornire pompa
-       print("Pornire Z1 faza2:", today)
+       print(("Pornire Z1 faza2:", today))
        flagZ1o = 5
     if activi2Z1 == 1 and ora == orai1t2oprit and minut == minuti1t2oprit and GPIO.input(pinZ1) == 0:
        GPIO.output(pinZ1, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH) #oprire pompa
        flagZ1o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
 
 
     if activi1Z1 == 1 and activh1Z1 == 1 and ora == orah1 and minut == minuth1 and flagZ1o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z1 == 1 and activh1Z1 == 1 and ora == orah1oprit and minut == minuth1oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z1 == 1 and activh2Z1 == 1 and ora == orah1t2 and minut == minuth1t2 and flagZ1o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z1 == 1 and activh2Z1 == 1 and ora == orah1t2oprit and minut == minuth1t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 def irigareZ2():
     global flagZ2
@@ -956,40 +966,40 @@ def irigareZ2():
        GPIO.output(pinZ2, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW)
        flagZ2o = 5
-       print("Pornire Z2:", today)
+       print(("Pornire Z2:", today))
     if activi1Z2 == 1 and ora == orai2oprit and minut == minuti2oprit and GPIO.input(pinZ2) == 0:
        GPIO.output(pinZ2, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
-       print "oprire activ"
+       print("oprire activ")
        flagZ2o = 0
     
     if activi2Z2 == 1 and ora == orai2t2 and minut == minuti2t2 and GPIO.input(pinZ2) == 1:
        GPIO.output(pinZ2, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW)
-       print("Pornire Z2 faza2:", today)
+       print(("Pornire Z2 faza2:", today))
        flagZ2o = 5
     
     if activi2Z2 == 1 and ora == orai2t2oprit and minut == minuti2t2oprit and GPIO.input(pinZ2) == 0:
        GPIO.output(pinZ2, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
        flagZ2o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
     if activi1Z2 == 1 and activh1Z2 == 1 and minut == minuth2 and flagZ2o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z2 == 1 and activh1Z2 == 1 and ora == orah2oprit and minut == minuth2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z2 == 1 and activh2Z2 == 1 and ora == orah2t2 and minut == minuth2t2 and flagZ2o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z2 == 1 and activh2Z2 == 1 and ora == orah2t2oprit and minut == minuth2t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 def irigareZ3():
     global flagZ3
@@ -999,40 +1009,40 @@ def irigareZ3():
        GPIO.output(pinZ3, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW)
        flagZ3o = 5
-       print("Pornire Z3:", today)
+       print(("Pornire Z3:", today))
     if activi1Z3 == 1 and ora == orai3oprit and minut == minuti3oprit and GPIO.input(pinZ3) == 0:
        GPIO.output(pinZ3, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
-       print "oprire activ"
+       print("oprire activ")
        flagZ3o = 0
 
     if activi2Z3 == 1 and ora == orai3t2 and minut == minuti3t2 and GPIO.input(pinZ3) == 1:
        GPIO.output(pinZ3, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW)
-       print("Pornire Z3 faza 2:", today)
+       print(("Pornire Z3 faza 2:", today))
        flagZ3o = 5
 
     if activi2Z3 == 1 and ora == orai3t2oprit and minut == minuti3t2oprit and GPIO.input(pinZ3) == 0:
        GPIO.output(pinZ3, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
        flagZ3o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
     if activi1Z3 == 1 and activh1Z3 == 1 and minut == minuth3 and flagZ3o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z3 == 1 and activh1Z3 == 1 and ora == orah3oprit and minut == minuth3oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z3 == 1 and activh2Z3 == 1 and ora == orah3t2 and minut == minuth3t2 and flagZ3o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z3 == 1 and activh2Z3 == 1 and ora == orah3t2oprit and minut == minuth3t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 def irigareZ4():
     global flagZ4
@@ -1042,40 +1052,40 @@ def irigareZ4():
        GPIO.output(pinZ4, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW)
        flagZ4o = 5
-       print("Pornire Z4:", today)
+       print(("Pornire Z4:", today))
     if activi1Z4 == 1 and ora == orai4oprit and minut == minuti4oprit and GPIO.input(pinZ4) == 0:
        GPIO.output(pinZ4, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
-       print "oprire activ"
+       print("oprire activ")
        flagZ4o = 0
 
     if activi2Z4 == 1 and ora == orai4t2 and minut == minuti4t2 and GPIO.input(pinZ4) == 1:
        GPIO.output(pinZ4, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW)
-       print("Pornire Z4 faza2:", today)
+       print(("Pornire Z4 faza2:", today))
        flagZ4o = 5
 
     if activi2Z4 == 1 and ora == orai4t2oprit and minut == minuti4t2oprit and GPIO.input(pinZ4) == 0:
        GPIO.output(pinZ4, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
        flagZ4o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
     if activi1Z4 == 1 and activh1Z4 == 1 and minut == minuth4 and flagZ4o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z4 == 1 and activh1Z4 == 1 and ora == orah4oprit and minut == minuth4oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z4 == 1 and activh2Z4 == 1 and ora == orah4t2 and minut == minuth4t2 and flagZ4o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z4 == 1 and activh2Z4 == 1 and ora == orah4t2oprit and minut == minuth4t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 def irigareZ5():
     global flagZ5
@@ -1085,40 +1095,40 @@ def irigareZ5():
        GPIO.output(pinZ5, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW)
        flagZ5o = 5
-       print("Pornire Z5:", today)
+       print(("Pornire Z5:", today))
     if activi1Z5 == 1 and ora == orai5oprit and minut == minuti5oprit and GPIO.input(pinZ5) == 0:
        GPIO.output(pinZ5, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
-       print "oprire activ"
+       print("oprire activ")
        flagZ5o = 0
 
     if activi2Z5 == 1 and ora == orai5t2 and minut == minuti5t2 and GPIO.input(pinZ5) == 1:
        GPIO.output(pinZ5, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW)
-       print("Pornire Z5 faza2:", today)
+       print(("Pornire Z5 faza2:", today))
        flagZ5o = 5
 
     if activi2Z5 == 1 and ora == orai5t2oprit and minut == minuti5t2oprit and GPIO.input(pinZ5) == 0:
        GPIO.output(pinZ5, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
        flagZ5o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
     if activi1Z5 == 1 and activh1Z5 == 1 and minut == minuth5 and flagZ5o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z5 == 1 and activh1Z5 == 1 and ora == orah5oprit and minut == minuth5oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z5 == 1 and activh2Z5 == 1 and ora == orah5t2 and minut == minuth5t2 and flagZ5o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z5 == 1 and activh2Z5 == 1 and ora == orah5t2oprit and minut == minuth5t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 def irigareZ6():
     global flagZ6
@@ -1128,40 +1138,40 @@ def irigareZ6():
        GPIO.output(pinZ6, GPIO.LOW)  #deschidere electrovalva
        GPIO.output(pompaI, GPIO.LOW)
        flagZ6o = 5
-       print("Pornire Z6:", today)
+       print(("Pornire Z6:", today))
     if activi1Z6 == 1 and ora == orai6oprit and minut == minuti6oprit and GPIO.input(pinZ6) == 0:
        GPIO.output(pinZ6, GPIO.HIGH)  #inchidere electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
-       print "oprire activ"
+       print("oprire activ")
        flagZ6o = 0
 
     if activi2Z6 == 1 and ora == orai6t2 and minut == minuti6t2 and GPIO.input(pinZ6) == 1:
        GPIO.output(pinZ6, GPIO.LOW) #deschide electrovalva
        GPIO.output(pompaI, GPIO.LOW)
-       print("Pornire Z6 faza2:", today)
+       print(("Pornire Z6 faza2:", today))
        flagZ6o = 5
 
     if activi2Z6 == 1 and ora == orai6t2oprit and minut == minuti6t2oprit and GPIO.input(pinZ6) == 0:
        GPIO.output(pinZ6, GPIO.HIGH) #inchide electrovalva
        GPIO.output(pompaI, GPIO.HIGH)
        flagZ6o = 0
-       print "activ 2 oprit"
+       print("activ 2 oprit")
 
     if activi1Z6 == 1 and activh1Z6 == 1 and minut == minuth6 and flagZ6o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 1 pornit"
+       print("hrana timp 1 pornit")
 
     if activi1Z6 == 1 and activh1Z6 == 1 and ora == orah6oprit and minut == minuth6oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 1 oprit"
+       print("hrana timp 1 oprit")
 
     if activi2Z6 == 1 and activh2Z6 == 1 and ora == orah6t2 and minut == minuth6t2 and flagZ6o > 0 and GPIO.input(pinH) == 1:
        GPIO.output(pinH, GPIO.LOW) #porneste pompa
-       print "hrana timp 2 pornit"
+       print("hrana timp 2 pornit")
 
     if activi2Z6 == 1 and activh2Z6 == 1 and ora == orah6t2oprit and minut == minuth6t2oprit and GPIO.input(pinH) == 0:
        GPIO.output(pinH, GPIO.HIGH) #opreste pompa
-       print "hrana timp 2 oprit"
+       print("hrana timp 2 oprit")
 
 
 #Setari Motor 1
@@ -1263,7 +1273,7 @@ def Motor2():
        GPIO.output(ID, GPIO.LOW)
     if activ2 == 1 and time.time() > tnext2 and  tIn >= Topen2 and Wclose2 >= rafala and steps2 > treapta2 and treapta2 >= 1 :
        Motor2On()
-       print 'motor 2 pornit treapta 1+ {treapta2}'
+       print('motor 2 pornit treapta 1+ {treapta2}')
 
     if activ2 == 1 and time.time() > tnext2 and  tIn >= Topen2 and Wclose2 >= rafala and steps2 > treapta2 and time.time() > tpornit2 :
        Motor2On()
@@ -1329,7 +1339,7 @@ def Motor3():
        GPIO.output(DS2, GPIO.LOW)
     if activ3 == 1 and time.time() > tnext3 and  tIn >= Topen3 and Wclose3 >= rafala and steps3 > treapta3 and treapta3 >= 1 :
        Motor3On()
-       print 'motor 3 pornit treapta 1+ {treapta3}'
+       print('motor 3 pornit treapta 1+ {treapta3}')
 
     if activ3 == 1 and time.time() > tnext3 and  tIn >= Topen3 and Wclose3 >= rafala and steps3 > treapta3 and time.time() > tpornit3 :
        Motor3On()
@@ -1395,12 +1405,12 @@ def Motor4():
        GPIO.output(ID2, GPIO.LOW)
     if activ4 == 1 and time.time() > tnext4 and  tIn >= Topen4 and Wclose4 >= rafala and steps4 > treapta4 and treapta4 >= 1 :
        Motor4On()
-       print 'motor 3 pornit treapta 1+ {treapta4}'
+       print('motor 3 pornit treapta 1+ {treapta4}')
 
     if activ4 == 1 and time.time() > tnext4 and  tIn >= Topen4 and Wclose4 >= rafala and steps4 > treapta4 and time.time() > tpornit4 :
        Motor4On()
        print("porneste motor 4 treapta {treapta2}")
-       print treapta4
+       print(treapta4)
 
     if activ4 == 1 and time.time() >= toprit4 and GPIO.input(DD2) == 1:
        Motor4Off()
@@ -1484,9 +1494,10 @@ def arduinoData():
         while(arduinoSerialData.inWaiting()==0):
           break
         global Rerr, Terr, viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina, dataPHP
-        arduinoSerialData.write('S')
+        arduinoSerialData.write(str.encode('S'))
         sensorCallInfo = arduinoSerialData.readline()
         arduinoSerialData.close()
+        sensorCallInfo = sensorCallInfo.decode()
         dataNums = sensorCallInfo.split(';')
         if float(dataNums[3]) == -77:
            Terr = Terr + 1
@@ -1508,19 +1519,19 @@ def arduinoData():
            Terr = 0
         if tIn == -77 and Terr > 9 :
            tIn = 99
-        dataPHP = viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina
-        dataPHP = str(dataPHP)
+        dataPHP = {viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina}
+        #dataPHP = str.encode(dataPHP)
         Rerr = 0
-        #print viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina
+        print(viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina)
     except (OSError, ValueError, IndexError, serial.serialutil.SerialException):
-        dataPHP = viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina
-        dataPHP = str(dataPHP)
+        dataPHP = {viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina}
+        #dataPHP = str.encode(dataPHP)
         Rerr = Rerr+1
         if Rerr == 10:
            GPIO.output(Rst, GPIO.LOW)
            time.sleep(0.1)
            GPIO.output(Rst, GPIO.HIGH)
-           print "blocat"
+           print("blocat")
            Rerr = 0
         pass
 
@@ -1530,13 +1541,19 @@ def arduino_map(x, in_min, in_max, out_min, out_max):
 
 
 ###SOCKET SOCKET
-class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
+class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
         try:
-            data1 = self.request.recv(1024)
-            print data1
+            data1 = self.request.recv(1024).strip()
+            data1 = data1.decode()
+            #data1 = self.request.recv(1024).strip()
+            print(data1)
             global dataPHP
+            global treapta1
+            global treapta2
+            global treapta3
+            global treapta4
             if data1 == "confortR":
                m1 = 0
                m2 = 0
@@ -1560,45 +1577,42 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
                   m4 = arduino_map(treapta4, 0, steps4, 0, 100)
                if treapta4 == 10:
                   m4 = 101
-               dataPHP = viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina, m1, m2, m3, m4
-               #print dataPHP
-               dataPHP = str(dataPHP)
-               self.request.sendall(dataPHP)
+               self.request.sendall(str.encode(",".join([str(viteza), str(rafala), str(directie), str(tIn), str(uIn), str(tOut), str(uOut), str(tAer), str(tSol), str(lumina), str(m1), str(m2), str(m3), str(m4)])))
             if data1 == "Zona1":
                GPIO.output(pinZ1, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z1"
+               print("update Z1")
                updateirigareZ1()
             if data1 == "Zona2":
                GPIO.output(pinZ2, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z2"
+               print("update Z2")
                updateirigareZ2()
             if data1 == "Zona3":
                GPIO.output(pinZ3, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z3"
+               print("update Z3")
                updateirigareZ3()
             if data1 == "Zona4":
                GPIO.output(pinZ4, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z4"
+               print("update Z4")
                updateirigareZ4()
             if data1 == "Zona5":
                GPIO.output(pinZ5, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z5"
+               print("update Z5")
                updateirigareZ5()
             if data1 == "Zona6":
                GPIO.output(pinZ6, GPIO.HIGH)
                GPIO.output(pinH, GPIO.HIGH)
                GPIO.output(pompaI, GPIO.HIGH)
-               print "update Z6"
+               print("update Z6")
                updateirigareZ6()
             if data1 == "uSettings":
                GPIO.output(pompaI, GPIO.HIGH)
@@ -1609,7 +1623,7 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
                GPIO.output(pinZ4, GPIO.HIGH)
                GPIO.output(pinZ5, GPIO.HIGH)
                GPIO.output(pinZ6, GPIO.HIGH)
-               print "update settings"
+               print("update settings")
                updateSet()
                if auxSet == 2:
                   updateirigareZ1()
@@ -1626,45 +1640,41 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
             if data1 == "confortL1":
                GPIO.output(IS, GPIO.LOW)
                GPIO.output(DS, GPIO.LOW)
-               global treapta1
                treapta1 = 10
                tpornit1 = 0
                tnext1 = 0
                toprit1 = 0
-               print "update M5"
+               print("update M5")
                updatedata1()
             if data1 == "confortL2":
                GPIO.output(ID, GPIO.LOW)
                GPIO.output(DD, GPIO.LOW)
-               global treapta2
                treapta2 = 10
                tpornit2 = 0 
                tnext2 = 0
                toprit2 = 0
-               print "update M2"
+               print("update M2")
                updatedata2()
             if data1 == "confortL3":
                GPIO.output(IS2, GPIO.LOW)
                GPIO.output(DS2, GPIO.LOW)
-               global treapta3
                treapta3 = 10
                tpornit3 = 0
                tnext3 = 0
                toprit3 = 0
-               print "update M3"
+               print("update M3")
                updatedata3()
             if data1 == "confortL4":
                GPIO.output(ID2, GPIO.LOW)
                GPIO.output(DD2, GPIO.LOW)
-               global treapta4
                treapta4 = 10
                tpornit4 = 0
                tnext4 = 0
                toprit4 = 0
-               print "update M4"
+               print("update M4")
                updatedata4()
             if data1 == "auxFan":
-               print "update Aux"
+               print("update Aux")
                updateAuxiliary()
 
         except IndexError:
@@ -1680,14 +1690,14 @@ def frun():
             if ora == 0 and minut == 0 and ziua == 0:
                ziua = 1
                today = date.today()
-               print("Azi :", today)
-               print viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina
+               print(("Azi :", today))
+               print(viteza, rafala, directie, tIn, uIn, tOut, uOut, tAer, tSol, lumina)
             if ora == 0 and minut == 1 and ziua == 1:
                ziua = 0
             threading.Timer(1, frun).start()
         except KeyboardInterrupt:
             GPIO.cleanup()
-            print "iesire sistem 1"
+            print("iesire sistem 1")
             os.kill(os.getpid(), signal.SIGTERM)
 
 
@@ -1726,7 +1736,7 @@ def grun():
             threading.Timer(10, grun).start()
         except KeyboardInterrupt:
             GPIO.cleanup()
-            print "exit sistem grun"
+            print("exit sistem grun")
             os.kill(os.getpid(), signal.SIGTERM)
 
 
@@ -1739,7 +1749,7 @@ def mrun():
             threading.Timer(1, mrun).start()
         except KeyboardInterrupt:
             GPIO.cleanup()
-            print "exit sistem 1"
+            print("exit sistem 1")
             os.kill(os.getpid(), signal.SIGTERM)
 
 
@@ -1767,7 +1777,7 @@ if auxSet == 6:
    updateirigareZ6()
 ###Setari Socket
 
-class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
+class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     pass
 
 def socS():
@@ -1783,6 +1793,6 @@ def socS():
         server.server_close()
     except KeyboardInterrupt:
         GPIO.cleanup()
-        print "exit sistem"
+        print("exit sistem")
         os.kill(os.getpid(), signal.SIGTERM)
 socS()
