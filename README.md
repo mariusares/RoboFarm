@@ -1,4 +1,4 @@
-RoboFarm Greenhouse, Irrigation, and Poultry Farm with Arduino and Raspberry Pi 
+RoboFarm Greenhouse Automation, Irrigation Automation, and Poultry Farm Automation with Arduino and Raspberry Pi 
 
 Long story short, a few years ago (in 2017 i think), a guy criticized the graphical interface.
 
