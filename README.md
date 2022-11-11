@@ -1,7 +1,7 @@
 # RoboFarm
 RoboFarm Grenhouse, Irrigation and Poultry Farm with Arduino and Raspberry Pi 
 
-The php GUI is on Romanian language. Would be translated at some stage (too bussy nowdays).
+The php GUI (html folder) is on Romanian language. Would be translated at some stage (too bussy nowdays).
 
 
 The sql file contains the MySQL/MariaDB SQL database structure
@@ -9,6 +9,8 @@ The sql file contains the MySQL/MariaDB SQL database structure
 
 The default username is admin password admin 
 
+
+for those who want more than a test, the PCB Layout is available for printing
 
 
 Long story short, few years ago (in 2017 i think), a guy criticised the graphical interface.
