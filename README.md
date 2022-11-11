@@ -10,7 +10,7 @@ The sql file contains the MySQL/MariaDB SQL database structure
 The default username is admin password admin 
 
 
-for those who want more than a test, the PCB Layout is available for printing
+For those who want more than a test, the PCB Layout is available for printing
 
 
 Long story short, few years ago (in 2017 i think), a guy criticised the graphical interface.
