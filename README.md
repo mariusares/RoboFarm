@@ -1,7 +1,7 @@
 # RoboFarm
 RoboFarm Grenhouse, Irrigation and Poultry Farm with Arduino and Raspberry Pi 
 
-The Software would be updated in the next few days 
+The php GUI is on Romanian language. Would be translated at some stage (too bussy nowdays).
 
 
 
