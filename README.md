@@ -24,7 +24,7 @@ The project can work with a radio module with some software modifications.
 
 Feel free to use it as you pleased. 
 
-First version based on Arduino Mega with Google Docs logs :
+First version based on Arduino Mega with Google Docs logs  in production on 2015 :
 
 https://www.youtube.com/watch?v=YMtiKbJgd4w&t=180s
 
